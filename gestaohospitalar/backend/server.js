@@ -82,6 +82,12 @@ const idFields = {
 }
 
 function sendJson(response, statusCode, data) {
+    response.statusCode = statusCode
+    response.locals = {
+        ...(response.locals || {}),
+        responseBody: data
+    }
+
     response.writeHead(statusCode, {
         'Content-Type': 'application/json; charset=utf-8',
         'Access-Control-Allow-Origin': '*',
@@ -89,6 +95,30 @@ function sendJson(response, statusCode, data) {
         'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS'
     })
     response.end(JSON.stringify(data))
+}
+
+function logRequest(request, response, startedAt) {
+    const duration = Date.now() - startedAt
+    const statusCode = response.statusCode || 200
+    const level = statusCode >= 500 ? 'ERRO' : statusCode >= 400 ? 'AVISO' : 'SUCESSO'
+    const body = response.locals?.responseBody || {}
+    const message = body.erro || body.mensagem || 'OK'
+    const timestamp = new Date().toISOString()
+
+    const line = `[${timestamp}] ${level} ${request.method} ${request.url} ${statusCode} ${duration}ms - ${message}`
+
+    if (statusCode >= 500) {
+        console.error(line)
+        if (body.detalhes) console.error(`Detalhes: ${body.detalhes}`)
+        return
+    }
+
+    if (statusCode >= 400) {
+        console.warn(line)
+        return
+    }
+
+    console.log(line)
 }
 
 function readBody(request) {
@@ -284,6 +314,13 @@ function handleDischarge(response, id) {
 }
 
 async function route(request, response) {
+    const startedAt = Date.now()
+
+    response.locals = {}
+    response.on('finish', () => {
+        logRequest(request, response, startedAt)
+    })
+
     if (request.method === 'OPTIONS') {
         sendJson(response, 204, {})
         return
@@ -328,6 +365,9 @@ async function route(request, response) {
 
         await handleItem(request, response, resource, id)
     } catch (error) {
+        console.error(`[${new Date().toISOString()}] ERRO INTERNO ${request.method} ${request.url}`)
+        console.error(error)
+
         sendJson(response, 500, {
             erro: 'Erro interno do servidor',
             detalhes: error.message
