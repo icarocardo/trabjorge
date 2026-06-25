@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Dashboard Hospitalar</title>
+
+    <link rel="stylesheet" href="./css/style.css" />
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.2.0/remixicon.min.css" />
+</head>
+
+<body>
+
+    <main class="dashboard-layout">
+
+        <!-- SIDEBAR -->
+
+        <aside class="sidebar">
+
+            <div class="sidebar-top">
+
+                <div class="sidebar-logo">
+                    <i class="ri-hospital-fill"></i>
+                </div>
+
+                <h2>Hospital</h2>
+
+            </div>
+
+            <nav class="sidebar-menu">
+
+                <a href="./dashboard.html" class="active">
+                    <i class="ri-dashboard-line"></i>
+                    Dashboard
+                </a>
+
+                <a href="./pacientes.html">
+                    <i class="ri-user-heart-line"></i>
+                    Pacientes
+                </a>
+
+                <a href="./medicos.html">
+                    <i class="ri-stethoscope-line"></i>
+                    Médicos
+                </a>
+
+                <a href="./consultas.html">
+                    <i class="ri-calendar-check-line"></i>
+                    Consultas
+                </a>
+
+                <a href="./leitos.html">
+                    <i class="ri-hotel-bed-line"></i>
+                    Leitos
+                </a>
+
+                <a href="./internacoes.html">
+                    <i class="ri-building-line"></i>
+                    Internações
+                </a>
+
+                <a href="./prontuarios.html">
+                    <i class="ri-file-list-3-line"></i>
+                    Prontuários
+                </a>
+
+                <a href="./log.html">
+                    <i class="ri-error-warning-line"></i>
+                    Log de Erros
+                </a>
+
+            </nav>
+
+        </aside>
+
+        <!-- CONTENT -->
+
+        <section class="dashboard-content">
+
+            <!-- HEADER -->
+
+            <header class="dashboard-header">
+
+                <div>
+                    <h1>Dashboard Hospitalar</h1>
+                    <p>
+                        Controle e gerenciamento hospitalar
+                    </p>
+                </div>
+
+                <button class="logout-button" onclick="logout()">
+                    <i class="ri-logout-box-r-line"></i>
+                    Sair
+                </button>
+
+            </header>
+
+            <!-- CARDS -->
+
+            <div class="dashboard-cards">
+
+                <div class="dashboard-card">
+
+                    <div class="card-icon blue">
+                        <i class="ri-user-heart-line"></i>
+                    </div>
+
+                    <div>
+                        <h3>Pacientes</h3>
+                        <span id="total-patients">0</span>
+                    </div>
+
+                </div>
+
+                <div class="dashboard-card">
+
+                    <div class="card-icon green">
+                        <i class="ri-stethoscope-line"></i>
+                    </div>
+
+                    <div>
+                        <h3>Médicos</h3>
+                        <span id="total-doctors">0</span>
+                    </div>
+
+                </div>
+
+                <div class="dashboard-card">
+
+                    <div class="card-icon orange">
+                        <i class="ri-calendar-check-line"></i>
+                    </div>
+
+                    <div>
+                        <h3>Consultas</h3>
+                        <span id="total-consultations">0</span>
+                    </div>
+
+                </div>
+
+                <div class="dashboard-card">
+
+                    <div class="card-icon red">
+                        <i class="ri-hotel-bed-line"></i>
+                    </div>
+
+                    <div>
+                        <h3>Leitos Ocupados</h3>
+                        <span id="total-beds">0</span>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- TABLE -->
+
+            <div class="dashboard-table">
+
+                <div class="table-header">
+
+                    <h2>Consultas Recentes</h2>
+
+                </div>
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+                            <th>Paciente</th>
+                            <th>Médico</th>
+                            <th>Especialidade</th>
+                            <th>Status</th>
+                        </tr>
+
+                    </thead>
+
+                    
+                    <tbody id="recent-consultations-body">
+
+                        <tr>
+                            <td colspan="4">
+                                Carregando consultas...
+                            </td>
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+    </main>
+
+    <script src="./js/api.js"></script>
+    <script src="./js/dashboard.js"></script>
+</body>
+
+</html>

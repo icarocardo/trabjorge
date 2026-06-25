@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pacientes</title>
+
+    <link rel="stylesheet" href="./css/style.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.2.0/remixicon.min.css" />
+</head>
+
+<body>
+
+    <main class="dashboard-layout">
+
+        <aside class="sidebar">
+            <div class="sidebar-top">
+                <div class="sidebar-logo">
+                    <i class="ri-hospital-fill"></i>
+                </div>
+                <h2>Hospital</h2>
+            </div>
+
+            <nav class="sidebar-menu">
+                <a href="./dashboard.html">
+                    <i class="ri-dashboard-line"></i>
+                    Dashboard
+                </a>
+
+                <a href="./pacientes.html" class="active">
+                    <i class="ri-user-heart-line"></i>
+                    Pacientes
+                </a>
+
+                <a href="./medicos.html">
+                    <i class="ri-stethoscope-line"></i>
+                    Médicos
+                </a>
+
+                <a href="./consultas.html">
+                    <i class="ri-calendar-check-line"></i>
+                    Consultas
+                </a>
+
+                <a href="./leitos.html">
+                    <i class="ri-hotel-bed-line"></i>
+                    Leitos
+                </a>
+
+                <a href="./internacoes.html">
+                    <i class="ri-building-line"></i>
+                    Internações
+                </a>
+
+                <a href="./prontuarios.html">
+                    <i class="ri-file-list-3-line"></i>
+                    Prontuários
+                </a>
+
+                <a href="./log.html">
+                    <i class="ri-error-warning-line"></i>
+                    Log de Erros
+                </a>
+            </nav>
+        </aside>
+
+        <section class="dashboard-content">
+
+            <header class="dashboard-header">
+                <div>
+                    <h1>Pacientes</h1>
+                    <p>Cadastro, busca e gerenciamento de pacientes.</p>
+                </div>
+
+                <button class="logout-button" onclick="logout()">
+                    <i class="ri-logout-box-r-line"></i>
+                    Sair
+                </button>
+            </header>
+
+            <section class="page-actions">
+                <div class="search-box">
+                    <i class="ri-search-line"></i>
+                    <input type="text" id="search-patient" placeholder="Buscar por nome ou CPF..." />
+                </div>
+
+                <button class="primary-button" id="open-patient-modal">
+                    <i class="ri-add-line"></i>
+                    Novo paciente
+                </button>
+            </section>
+
+            <section class="dashboard-table">
+                <div class="table-header">
+                    <h2>Lista de Pacientes</h2>
+                </div>
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Nome</th>
+                            <th>CPF</th>
+                            <th>Telefone</th>
+                            <th>Email</th>
+                            <th>Status</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="patients-table-body">
+                        <tr>
+                            <td colspan="6">Carregando pacientes...</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+
+        </section>
+
+        <div class="modal-overlay" id="patient-modal">
+            <div class="modal">
+                <div class="modal-header">
+                    <h2>Novo paciente</h2>
+
+                    <button class="modal-close" id="close-patient-modal">
+                        <i class="ri-close-line"></i>
+                    </button>
+                </div>
+
+                <form id="patient-form" class="modal-form">
+                    <div class="input-group">
+                        <label>Nome completo</label>
+                        <input type="text" id="patient-name" required>
+                    </div>
+
+                    <div class="input-group">
+                        <label>CPF</label>
+                        <input type="text" id="patient-cpf" required>
+                    </div>
+
+                    <div class="input-group">
+                        <label>Data de nascimento</label>
+                        <input type="date" id="patient-birth">
+                    </div>
+
+                    <div class="input-group">
+                        <label>Telefone</label>
+                        <input type="text" id="patient-phone">
+                    </div>
+
+                    <div class="input-group">
+                        <label>Email</label>
+                        <input type="email" id="patient-email">
+                    </div>
+
+                    <button type="submit" class="primary-button">
+                        Salvar paciente
+                    </button>
+                </form>
+            </div>
+        </div>
+
+    </main>
+
+    <script src="./js/api.js"></script>
+    <script src="./js/pacientes.js"></script>
+
+</body>
+
+</html>

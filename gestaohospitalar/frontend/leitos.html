@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Leitos</title>
+
+    <link rel="stylesheet" href="./css/style.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.2.0/remixicon.min.css" />
+</head>
+
+<body>
+
+    <main class="dashboard-layout">
+
+        <aside class="sidebar">
+            <div class="sidebar-top">
+                <div class="sidebar-logo">
+                    <i class="ri-hospital-fill"></i>
+                </div>
+                <h2>Hospital</h2>
+            </div>
+
+            <nav class="sidebar-menu">
+                <a href="./dashboard.html"><i class="ri-dashboard-line"></i>Dashboard</a>
+                <a href="./pacientes.html"><i class="ri-user-heart-line"></i>Pacientes</a>
+                <a href="./medicos.html"><i class="ri-stethoscope-line"></i>Médicos</a>
+                <a href="./consultas.html"><i class="ri-calendar-check-line"></i>Consultas</a>
+                <a href="./leitos.html" class="active"><i class="ri-hotel-bed-line"></i>Leitos</a>
+                <a href="./internacoes.html"><i class="ri-building-line"></i>Internações</a>
+                <a href="./prontuarios.html"><i class="ri-file-list-3-line"></i>Prontuários</a>
+                <a href="./log.html"><i class="ri-error-warning-line"></i>Log de Erros</a>
+            </nav>
+        </aside>
+
+        <section class="dashboard-content">
+
+            <header class="dashboard-header">
+                <div>
+                    <h1>Leitos</h1>
+                    <p>Cadastro e controle de disponibilidade dos leitos hospitalares.</p>
+                </div>
+
+                <button class="logout-button" onclick="logout()">
+                    <i class="ri-logout-box-r-line"></i>
+                    Sair
+                </button>
+            </header>
+
+            <section class="page-actions">
+                <div class="search-box">
+                    <i class="ri-search-line"></i>
+                    <input type="text" id="search-bed" placeholder="Buscar por número, setor ou status..." />
+                </div>
+
+                <button class="primary-button" id="open-bed-modal">
+                    <i class="ri-add-line"></i>
+                    Novo leito
+                </button>
+            </section>
+
+            <section class="dashboard-table">
+                <div class="table-header">
+                    <h2>Lista de Leitos</h2>
+                </div>
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Número</th>
+                            <th>Setor</th>
+                            <th>Status</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="beds-table-body">
+                        <tr>
+                            <td colspan="4">Carregando leitos...</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+
+        </section>
+
+        <div class="modal-overlay" id="bed-modal">
+            <div class="modal">
+                <div class="modal-header">
+                    <h2>Novo leito</h2>
+
+                    <button class="modal-close" id="close-bed-modal">
+                        <i class="ri-close-line"></i>
+                    </button>
+                </div>
+
+                <form id="bed-form" class="modal-form">
+
+                    <div class="input-group">
+                        <label>Número do leito</label>
+                        <input type="text" id="bed-number" placeholder="Ex: 101" required />
+                    </div>
+
+                    <div class="input-group">
+                        <label>Setor</label>
+                        <input type="text" id="bed-sector" placeholder="Ex: UTI, Enfermaria, Pediatria..." required />
+                    </div>
+
+                    <div class="input-group">
+                        <label>Status</label>
+                        <select id="bed-status">
+                            <option value="Disponível">Disponível</option>
+                            <option value="Ocupado">Ocupado</option>
+                            <option value="Manutenção">Manutenção</option>
+                        </select>
+                    </div>
+
+                    <button type="submit" class="primary-button">
+                        Salvar leito
+                    </button>
+
+                </form>
+            </div>
+        </div>
+
+    </main>
+
+    <script src="./js/api.js"></script>
+    <script src="./js/leitos.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Médicos</title>
+
+    <link rel="stylesheet" href="./css/style.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.2.0/remixicon.min.css" />
+</head>
+
+<body>
+
+    <main class="dashboard-layout">
+
+        <aside class="sidebar">
+            <div class="sidebar-top">
+                <div class="sidebar-logo">
+                    <i class="ri-hospital-fill"></i>
+                </div>
+                <h2>Hospital</h2>
+            </div>
+
+            <nav class="sidebar-menu">
+                <a href="./dashboard.html">
+                    <i class="ri-dashboard-line"></i>
+                    Dashboard
+                </a>
+
+                <a href="./pacientes.html">
+                    <i class="ri-user-heart-line"></i>
+                    Pacientes
+                </a>
+
+                <a href="./medicos.html" class="active">
+                    <i class="ri-stethoscope-line"></i>
+                    Médicos
+                </a>
+
+                <a href="./consultas.html">
+                    <i class="ri-calendar-check-line"></i>
+                    Consultas
+                </a>
+
+                <a href="./leitos.html">
+                    <i class="ri-hotel-bed-line"></i>
+                    Leitos
+                </a>
+
+                <a href="./internacoes.html">
+                    <i class="ri-building-line"></i>
+                    Internações
+                </a>
+
+                <a href="./prontuarios.html">
+                    <i class="ri-file-list-3-line"></i>
+                    Prontuários
+                </a>
+
+                <a href="./log.html">
+                    <i class="ri-error-warning-line"></i>
+                    Log de Erros
+                </a>
+            </nav>
+        </aside>
+
+        <section class="dashboard-content">
+
+            <header class="dashboard-header">
+                <div>
+                    <h1>Médicos</h1>
+                    <p>Cadastro, busca e gerenciamento de médicos.</p>
+                </div>
+
+                <button class="logout-button" onclick="logout()">
+                    <i class="ri-logout-box-r-line"></i>
+                    Sair
+                </button>
+            </header>
+
+            <section class="page-actions">
+                <div class="search-box">
+                    <i class="ri-search-line"></i>
+                    <input type="text" id="search-doctor" placeholder="Buscar por nome, CRM ou especialidade..." />
+                </div>
+
+                <button class="primary-button" id="open-doctor-modal">
+                    <i class="ri-add-line"></i>
+                    Novo médico
+                </button>
+            </section>
+
+            <section class="dashboard-table">
+                <div class="table-header">
+                    <h2>Lista de Médicos</h2>
+                </div>
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Nome</th>
+                            <th>CRM</th>
+                            <th>Especialidade</th>
+                            <th>Status</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="doctors-table-body">
+                        <tr>
+                            <td colspan="5">Carregando médicos...</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+
+        </section>
+
+        <div class="modal-overlay" id="doctor-modal">
+            <div class="modal">
+                <div class="modal-header">
+                    <h2>Novo médico</h2>
+
+                    <button class="modal-close" id="close-doctor-modal">
+                        <i class="ri-close-line"></i>
+                    </button>
+                </div>
+
+                <form id="doctor-form" class="modal-form">
+                    <div class="input-group">
+                        <label>Nome completo</label>
+                        <input type="text" id="doctor-name" required>
+                    </div>
+
+                    <div class="input-group">
+                        <label>CRM</label>
+                        <input type="text" id="doctor-crm" required>
+                    </div>
+
+                    <div class="input-group">
+                        <label>Especialidade</label>
+                        <input type="text" id="doctor-specialty" required>
+                    </div>
+
+                    <button type="submit" class="primary-button">
+                        Salvar médico
+                    </button>
+                </form>
+            </div>
+        </div>
+
+    </main>
+
+    <script src="./js/api.js"></script>
+    <script src="./js/medicos.js"></script>
+
+</body>
+
+</html>

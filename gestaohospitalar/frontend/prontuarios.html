@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Prontuários</title>
+
+    <link rel="stylesheet" href="./css/style.css" />
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.2.0/remixicon.min.css" />
+</head>
+
+<body>
+
+    <main class="dashboard-layout">
+
+        <aside class="sidebar">
+
+            <div class="sidebar-top">
+                <div class="sidebar-logo">
+                    <i class="ri-hospital-fill"></i>
+                </div>
+
+                <h2>Hospital</h2>
+            </div>
+
+            <nav class="sidebar-menu">
+
+                <a href="./dashboard.html">
+                    <i class="ri-dashboard-line"></i>
+                    Dashboard
+                </a>
+
+                <a href="./pacientes.html">
+                    <i class="ri-user-heart-line"></i>
+                    Pacientes
+                </a>
+
+                <a href="./medicos.html">
+                    <i class="ri-stethoscope-line"></i>
+                    Médicos
+                </a>
+
+                <a href="./consultas.html">
+                    <i class="ri-calendar-check-line"></i>
+                    Consultas
+                </a>
+
+                <a href="./leitos.html">
+                    <i class="ri-hotel-bed-line"></i>
+                    Leitos
+                </a>
+
+                <a href="./internacoes.html">
+                    <i class="ri-building-line"></i>
+                    Internações
+                </a>
+
+                <a href="./prontuarios.html" class="active">
+                    <i class="ri-file-list-3-line"></i>
+                    Prontuários
+                </a>
+
+                <a href="./log.html">
+                    <i class="ri-error-warning-line"></i>
+                    Log de Erros
+                </a>
+
+            </nav>
+
+        </aside>
+
+        <section class="dashboard-content">
+
+            <header class="dashboard-header">
+
+                <div>
+                    <h1>Prontuários</h1>
+
+                    <p>
+                        Histórico médico, diagnósticos e evolução clínica.
+                    </p>
+                </div>
+
+                <button class="logout-button" onclick="logout()">
+                    <i class="ri-logout-box-r-line"></i>
+                    Sair
+                </button>
+
+            </header>
+
+            <section class="page-actions">
+
+                <div class="search-box">
+                    <i class="ri-search-line"></i>
+
+                    <input type="text" id="search-record" placeholder="Buscar por paciente ou diagnóstico..." />
+                </div>
+
+                <button class="primary-button" id="open-record-modal">
+                    <i class="ri-add-line"></i>
+                    Novo prontuário
+                </button>
+
+            </section>
+
+            <section class="dashboard-table">
+
+                <div class="table-header">
+                    <h2>Lista de Prontuários</h2>
+                </div>
+
+                <table>
+
+                    <thead>
+                        <tr>
+                            <th>Paciente</th>
+                            <th>Médico</th>
+                            <th>Diagnóstico</th>
+                            <th>Data</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="records-table-body">
+
+                        <tr>
+                            <td colspan="5">
+                                Carregando prontuários...
+                            </td>
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </section>
+
+        </section>
+
+        <div class="modal-overlay" id="record-modal">
+
+            <div class="modal modal-large">
+
+                <div class="modal-header">
+
+                    <h2>Novo prontuário</h2>
+
+                    <button class="modal-close" id="close-record-modal">
+                        <i class="ri-close-line"></i>
+                    </button>
+
+                </div>
+
+                <form id="record-form" class="modal-form">
+
+                    <div class="input-group">
+
+                        <label>Paciente</label>
+
+                        <select id="record-patient" required>
+                            <option value="">
+                                Selecione um paciente
+                            </option>
+                        </select>
+
+                    </div>
+
+                    <div class="input-group">
+
+                        <label>Médico</label>
+
+                        <select id="record-doctor" required>
+                            <option value="">
+                                Selecione um médico
+                            </option>
+                        </select>
+
+                    </div>
+
+                    <div class="input-group">
+
+                        <label>Consulta</label>
+
+                        <select id="record-consultation" required>
+                            <option value="">
+                                Selecione uma consulta
+                            </option>
+                        </select>
+
+                    </div>
+
+                    <div class="input-group">
+
+                        <label>Diagnóstico</label>
+
+                        <input type="text" id="record-diagnosis" placeholder="Ex: Pneumonia, Gripe..." required />
+
+                    </div>
+
+                    <div class="input-group">
+
+                        <label>Observações</label>
+
+                        <textarea id="record-observations" rows="5"
+                            placeholder="Descreva observações médicas..."></textarea>
+
+                    </div>
+
+                    <div class="input-group">
+
+                        <label>Medicamentos</label>
+
+                        <textarea id="record-medications" rows="4" placeholder="Medicamentos prescritos..."></textarea>
+
+                    </div>
+
+                    <button type="submit" class="primary-button">
+                        Salvar prontuário
+                    </button>
+
+                </form>
+
+            </div>
+
+        </div>
+
+    </main>
+
+    <script src="./js/api.js"></script>
+    <script src="./js/prontuarios.js"></script>
+
+</body>
+
+</html>
